@@ -22,8 +22,11 @@ while ans:
         subprocess.call("mv minecraft_server.1.8.jar /root/mc_1.8/minecraft_server.jar",shell=True)
         subprocess.call("mv eula.txt /root/mc_1.8",shell=True)
         print("\n=====Setting Permissons=====")
+        print("\n=====Before=====")
+        subprocess.call("ls -la /root/mc_1.8/",shell=True)
         subprocess.call("chmod 755 /root/mc_1.8/start.sh",shell=True)
-
+        print("\n=====After=====")
+        subprocess.call("ls -la /root/mc_1.8/",shell=True)
     elif ans == "start server":
       print("\nServer is starting")
       subprocess.Popen(["sh","/root/mc_1.8/start.sh"])
@@ -43,7 +46,7 @@ while ans:
     elif ans == "help":
         print("""
     "===Minecraft Manager Help==="
-    "installer" : Starts Minecraft Installer
+    "install" : Will install given minecraft version
     "start server" : Starts Minecraft Server
     "stop server" : Stops Minecraft Server
     "restart server" : Restarts Minecraft Server

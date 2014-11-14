@@ -15,6 +15,11 @@ while ans:
         subprocess.call("ping -c 5 google.com",shell=True)
     elif ans == "clear":
         subprocess.call("clear")
+    elif ans == "git":
+        subprocess.call("cd /root/pygate",shell=True)
+        subprocess.call("git add .",shell=True)
+        subprocess.call("git commit --allow-empty-message --author=David",shell=True)
+        subprocess.call("git push",shell=True)
     elif ans == "exit":
       print("\n Goodbye")
       ans = None
