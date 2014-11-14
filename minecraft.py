@@ -6,7 +6,8 @@ while ans:
     if ans == "install":
         print("\n=====Version that can be installed=====")
         print("\nexample: install 1.8")
-        print("\n1.8: will install Offical Version 1.8 Minecraft")
+        print("\n1.8 : will install Offical Version 1.8 Minecraft")
+        print("\ntekkit : will install Offical Latest Tekkit Minecraft")
         print("\n=====")
     elif ans == "install 1.8":
         print("\n=====Opening Minecraft Port=====")
@@ -27,6 +28,8 @@ while ans:
         subprocess.call("chmod 755 /root/mc_1.8/start.sh",shell=True)
         print("\n=====After=====")
         subprocess.call("ls -la /root/mc_1.8/",shell=True)
+    elif ans == "install tekkit":
+        print("need to config the server ")
     elif ans == "start server":
       print("\nServer is starting")
       subprocess.Popen(["sh","/root/mc_1.8/start.sh"])
