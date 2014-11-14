@@ -3,6 +3,6 @@ pygate
 
 Currently Working on Ubuntu 
 
-
-# cat /usr/bin/pygate
+# Created command pygate to make life easy 
+$cat /usr/bin/pygate
 python /root/pygate/main.py
