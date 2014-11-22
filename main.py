@@ -3,10 +3,10 @@ ans=True
 print("PYGate Main Menu")
 while ans:
     ans = raw_input("[PyGate]~> ")
-    if ans == "mc":
+    if ans == "minecraft":
         print("\nLoading Minecraft Settings")
         import minecraft
-    elif ans == "sm":
+    elif ans == "starmade":
         print("\n Loading Starmade Settings")
         import starmade
     elif ans == "ss":
@@ -16,18 +16,19 @@ while ans:
     elif ans == "clear":
         subprocess.call("clear")
     elif ans == "git":
-        subprocess.call("cd /root/pygate",shell=True)
+        commit = raw_input("Commit: ")
+        #subprocess.call("cd /root/pygate",shell=True)
         subprocess.call("git add .",shell=True)
-        subprocess.call("git commit -m Update",shell=True)
+        subprocess.call("git commit -m "+commit,shell=True)
         subprocess.call("git push",shell=True)
     elif ans == "exit":
-      print("\n Goodbye")
-      ans = None
+        print("\n Goodbye")
+        ans = None
     elif ans == "help":
         print("""
     "===PYGATE Help==="
-    "mc" : Loads Minecraft settings
-    "sm" : Loads Starmade settings
+    "minecraft" : Loads Minecraft settings
+    "starmade" : Loads Starmade settings
     "ss" : check server load
     "clear" : clear screen
     "ping" : pings google.com
