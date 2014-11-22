@@ -30,6 +30,7 @@ while ans:
     "minecraft" : Loads Minecraft settings
     "starmade" : Loads Starmade settings
     "ss" : check server load
+    "git" : will push changes to github
     "clear" : clear screen
     "ping" : pings google.com
     "exit" : Exit/Quit
