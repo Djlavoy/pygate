@@ -24,7 +24,7 @@ while ans:
         subprocess.call("git add .",shell=True)
         subprocess.call("git commit -m "+"'"+commit+"'",shell=True)
         subprocess.call("git push",shell=True)
-        Print("\n Complete")
+        print("\n Complete")
     elif ans == "exit":
         print("\n Goodbye")
         ans = None
