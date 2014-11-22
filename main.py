@@ -19,7 +19,7 @@ while ans:
         commit = raw_input("Commit: ")
         #subprocess.call("cd /root/pygate",shell=True)
         subprocess.call("git add .",shell=True)
-        subprocess.call("git commit -m "+commit,shell=True)
+        subprocess.call("git commit -m "+"'"+commit+"'",shell=True)
         subprocess.call("git push",shell=True)
     elif ans == "exit":
         print("\n Goodbye")
