@@ -16,9 +16,9 @@ while ans:
     elif ans == "clear":
         subprocess.call("clear")
     elif ans == "git":
-        print("\n Checking for updates")
+        print("\n ===Checking for updates===")
         subprocess.call("git pull",shell=True)
-        print("\n Pushing up Github" )
+        print("\n ===Pushing up Github===" )
         commit = raw_input("Commit: ")
         subprocess.call("cd /root/pygate",shell=True)
         subprocess.call("git add .",shell=True)
