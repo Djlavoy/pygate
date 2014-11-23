@@ -5,6 +5,16 @@ import urllib
 # Path which the servers will be installed in
 path = "/root/"
 
+# Dic, For Minecraft version
+v = {'v1.8': "Offical Minecraft1.8",
+     "tek": "Offical Tekkit"
+    }
+# Dic, For Minecraft Download
+d = {'v1.8': 'https://s3.amazonaws.com/Minecraft.Download/versions/1.8/minecraft_server.1.8.jar',
+     'tek' : 'somedownloadlink'
+    }
+
+
 ans=True
 print("Minecraft Installer")
 while ans:
@@ -16,36 +26,49 @@ while ans:
         print("\ntekkit : will install Offical Latest Tekkit Minecraft")
         print("\n=====")
     elif ans == "install 1.8":
-        minecraft_version = "Offical Minecraft 1.8"
-        minecraft_download = 'https://s3.amazonaws.com/Minecraft.Download/versions/1.8/minecraft_server.1.8.jar'        
+        m_v = v['v1.8']
+        m_d = d['v1.8']        
         break 
     elif ans == "install tekkit":
-        minecraft_version = "Offical tekkit"
-        minecraft_download = "tekkit link"
+        m_d = v['tek']
+        m_d = d['tek']
         break
     else: 
         print("\n Not A valid Selection")
 
+
+# Install Script 
 server = raw_input("Server Name: ")
-if os.path.exists(path+server):
-    print("Server "+server+" Already Exist")
+if os.path.exists(server):
+    print("Server {} Already Exist".format(server))
     pass
 else:
-    os.makedirs(path+server);
     ram = raw_input("Ram: ")
+    c = path+server
+    os.makedirs(c);
+
     print("\n=====Opening Minecraft Port=====")
     subprocess.call("ufw allow 25565",shell=True)
-    print("\n=====Creating Directory "+path+server+"=====")
-    print("\n=====Downloading "+minecraft_version+"=====")
-    subprocess.call("wget "+minecraft_download,shell=True)
+
+    print("\n=====Creating Directory=====")
+    print("Created Directory{}".format(c))
+
+    print("\n=====Downloading {}=====".format(m_v))
+    subprocess.call("wget {}".format(m_d),shell=True)
+
     print("\n=====Creating Startup Script=====")
-    subprocess.call("echo 'cd "+path+server+";java ""-Xmx"+ram+"M -Xms"+ram+"M -jar minecraft_server.jar -nogui' > "+path+server+"/start.sh",shell=True)
+    subprocess.call("echo 'cd {}; java -Xmx{}M -Xms{}M -jar minecraft_server -nogui' > {}/start.sh".format(c,ram,ram,c),shell=True)
     subprocess.call("echo eula=true > eula.txt",shell=True)
+
     print("\n=====Moving files to "+path+server+"=====")
-    subprocess.call("mv minecraft_server.1.8.jar "+path+server+"/minecraft_server.jar",shell=True)
-    subprocess.call("mv eula.txt "+path+server,shell=True)
-    print("\n=====Setting Permissons=====")
+    subprocess.call("mv minecraft_server.1.8.jar {}/minecraft_server.jar".format(c),shell=True)
+    subprocess.call("mv eula.txt {}".format(c),shell=True)
+
+    print("\n=====Setting Permissons for {}=====".format(c))
     print("\n=====Before=====")
-    subprocess.call("ls -la "+path+server,shell=True)
-    subprocess.call("chmod 755 "+path+server+"/start.sh",shell=True)
+    subprocess.call("ls -la {}".format(c),shell=True)
+    subprocess.call("chmod 755 {}/start.sh".format(c),shell=True)
     print("\n=====After=====")
+    subprocess.call("ls -la {}".format(c),shell=True)
+    print("\n=====Complete=====")
+    print("The server is now installed in {}".format(c))

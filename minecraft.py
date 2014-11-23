@@ -1,5 +1,4 @@
 import subprocess
-import os 
 
 # Path which the servers will be installed in
 path = "/root/"
@@ -14,12 +13,11 @@ while ans:
         import minecraft_installer
     elif ans == "start start":
         server = raw_input("Which server will you like start: ")
-       
+        # Starts inputed Minecraft server 
         print 'Starting {} server'.format(server)
-        
     elif ans == "stop server":
         server = raw_input("which server will you like to stop: ")
-
+        # Stop inputed Minecraft Server
         print 'Stoping {} server'.format(server)
     elif ans == "help":
         for line in mc_manager_help:

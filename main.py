@@ -1,4 +1,7 @@
 import subprocess
+
+# Config location
+main_menu_help = open("/root/pygate/config/main_menu_help.txt", "r")
 ans=True
 print("PYGate Main Menu")
 while ans:
@@ -29,17 +32,8 @@ while ans:
         print("\n Goodbye")
         ans = None
     elif ans == "help":
-        print("""
-    "===PYGATE Help==="
-    "minecraft" : Loads Minecraft settings
-    "starmade" : Loads Starmade settings
-    "ss" : check server load
-    "git" : will push changes to github
-    "clear" : clear screen
-    "ping" : pings google.com
-    "exit" : Exit/Quit
-    "================"
-    """)
+        for line in main_menu_help:
+            print line
     else:
        print("\n Not Valid Choice Try again or run help")
 
