@@ -65,10 +65,13 @@ else:
     subprocess.call("mv eula.txt {}".format(c),shell=True)
 
     print("\n=====Setting Permissons for {}=====".format(c))
+    
     print("\n=====Before=====")
     subprocess.call("ls -la {}".format(c),shell=True)
     subprocess.call("chmod 755 {}/start.sh".format(c),shell=True)
+    
     print("\n=====After=====")
     subprocess.call("ls -la {}".format(c),shell=True)
+    
     print("\n=====Complete=====")
     print("The server is now installed in {}".format(c))
