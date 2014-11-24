@@ -1,7 +1,11 @@
 import subprocess
+import shutil
+import sys
 
-# Config location
-main_menu_help = open("/root/pygate/config/main_menu_help.txt", "r")
+# Help location
+helplocation = "/root/pygate/config/help/main_menu_help.txt"
+
+
 ans=True
 print("PYGate Main Menu")
 while ans:
@@ -9,16 +13,25 @@ while ans:
     if ans == "minecraft":
         print("\nLoading Minecraft Settings")
         import minecraft
+
     elif ans == "starmade":
         print("\n Loading Starmade Settings")
         import starmade
+
     elif ans == "ss":
         import serverstatus
+
     elif ans == "ping":
-        subprocess.call("ping -c 5 google.com",shell=True)
+        p = raw_input("\nWhat will like to ping: ")
+        print("\n +------| Starting |-----+")
+        subprocess.call("ping -c 5 {}".format(p),shell=True)
+        print("\n +-----| Complete |-----+")
+    
     elif ans == "clear":
         subprocess.call("clear")
+    
     elif ans == "git":
+    
         print("\n ===Checking for updates===")
         subprocess.call("git pull",shell=True)
         print("\n ===Pushing up Github===" )
@@ -28,12 +41,15 @@ while ans:
         subprocess.call("git commit -m "+"'"+commit+"'",shell=True)
         subprocess.call("git push",shell=True)
         print("\n ===Complete===")
+    
     elif ans == "exit":
         print("\n Goodbye")
         ans = None
+    
     elif ans == "help":
-        for line in main_menu_help:
-            print line
+        with open("{}".format(helplocation), "r") as help:
+            shutil.copyfileobj(help, sys.stdout)
+    
     else:
        print("\n Not Valid Choice Try again or run help")
 

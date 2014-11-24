@@ -1,8 +1,10 @@
 import subprocess
+import shutil
+import sys
 
 # Path which the servers will be installed in
 path = "/root/"
-mc_manager_help = open("/root/pygate/config/mc_manager_help.txt", 'r')
+helplocation = "/root/pygate/config/help/mc_manager_help.txt"
 
 # Minecraft Manager Loop
 ans=True
@@ -20,8 +22,8 @@ while ans:
         # Stop inputed Minecraft Server
         print 'Stoping {} server'.format(server)
     elif ans == "help":
-        for line in mc_manager_help:
-            print line,
+        with open("{}".format(helplocation)) as help:
+            shutil.copyfileobj(help, sys.stdout)
     elif ans == "exit":
         break
     else: 

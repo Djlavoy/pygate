@@ -4,4 +4,5 @@
 | minecraft : Runs Minecraft Menu |
 | starmade : Runs Starmad Menu    |
 | ss : show server status         |
+| ping : Runs Ping                |
 +---------------------------------+ 
