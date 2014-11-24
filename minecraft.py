@@ -1,10 +1,12 @@
 import subprocess
 import shutil
 import sys
+import help
+
 
 # Path which the servers will be installed in
 path = "/root/"
-helplocation = "/root/pygate/config/help/mc_manager_help.txt"
+helplocation = help.h["minecraft"]
 
 # Minecraft Manager Loop
 ans=True

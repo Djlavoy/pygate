@@ -1,9 +1,13 @@
 import subprocess
 import os 
-import urllib
+import shutil
+import sys
+import help
+
 
 # Path which the servers will be installed in
 path = "/root/"
+helplocation = help.h['minecraft_installer']
 
 # Dic, For Minecraft version
 v = {'v1.8': "Offical Minecraft1.8",
@@ -33,6 +37,10 @@ while ans:
         m_d = v['tek']
         m_d = d['tek']
         break
+    elif ans == 'help':
+        with open("{}".format(helplocation), "r") as help:
+              shutil.copyfileobj(help, sys.stdout)
+
     else: 
         print("\n Not A valid Selection")
 

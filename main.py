@@ -12,11 +12,11 @@ print("PYGate Main Menu")
 while ans:
     ans = raw_input("[PyGate]~> ")
     if ans == "minecraft":
-        print("\nLoading Minecraft Settings")
+        print("\n+-----| Loading Minecraft Settings |-----+")
         import minecraft
 
     elif ans == "starmade":
-        print("\n Loading Starmade Settings")
+        print("\n+-----| Loading Starmade Settings |----+")
         import starmade
 
     elif ans == "ss":
