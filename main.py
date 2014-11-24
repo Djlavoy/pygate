@@ -1,9 +1,10 @@
 import subprocess
 import shutil
 import sys
+import help
 
 # Help location
-helplocation = "/root/pygate/config/help/main_menu_help.txt"
+helplocation = help.h['main']
 
 
 ans=True
