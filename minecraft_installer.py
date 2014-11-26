@@ -1,5 +1,5 @@
 import subprocess
-import os 
+import os
 import shutil
 import sys
 import config
@@ -12,7 +12,7 @@ installeravailable = config.h['minecraft_installer_a']
 
 # Dic, For Minecraft version
 v = {'v1.8': "Offical Minecraft1.8",
-     "tek": "Offical Tekkit"
+     'tek': "Offical Tekkit"
     }
 # Dic, For Minecraft Download
 d = {'v1.8': 'https://s3.amazonaws.com/Minecraft.Download/versions/1.8/minecraft_server.1.8.jar',
@@ -37,8 +37,8 @@ while ans:
         break
     elif ans == 'help':
         with open("{}".format(helplocation), "r") as help:
-              shutil.copyfileobj(help, sys.stdout
-    else: 
+              shutil.copyfileobj(help, sys.stdout)
+    else:
         print("\n Not A valid Selection")
 
 
