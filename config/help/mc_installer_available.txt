@@ -1,0 +1,4 @@
++------| Availble Versions |------+
+| install 1.8 : Installs 1.8      |
+| install tekkit : Installs Tekkit|
++---------------------------------+ 

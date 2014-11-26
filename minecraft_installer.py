@@ -2,12 +2,13 @@ import subprocess
 import os 
 import shutil
 import sys
-import help
+import config
 
 
 # Path which the servers will be installed in
 path = "/root/"
-helplocation = help.h['minecraft_installer']
+helplocation = config.h['minecraft_installer']
+installeravailable = config.h['minecraft_installer_a']
 
 # Dic, For Minecraft version
 v = {'v1.8': "Offical Minecraft1.8",
@@ -24,11 +25,8 @@ print("Minecraft Installer")
 while ans:
     ans = raw_input("[Minecraft Installer]~> ")
     if ans == "install":
-        print("\n=====Version that can be installed=====")
-        print("\nexample: install 1.8")
-        print("\n1.8 : will install Offical Version 1.8 Minecraft")
-        print("\ntekkit : will install Offical Latest Tekkit Minecraft")
-        print("\n=====")
+        with open("{}".format(installeravailable), "r") as help:
+            shutil.copyfileobj(help, sys.stdout)
     elif ans == "install 1.8":
         m_v = v['v1.8']
         m_d = d['v1.8']        
@@ -39,8 +37,7 @@ while ans:
         break
     elif ans == 'help':
         with open("{}".format(helplocation), "r") as help:
-              shutil.copyfileobj(help, sys.stdout)
-
+              shutil.copyfileobj(help, sys.stdout
     else: 
         print("\n Not A valid Selection")
 

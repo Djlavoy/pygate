@@ -1,12 +1,13 @@
 import subprocess
 import shutil
 import sys
-import help
+import config
 
 # Help location
-helplocation = help.h['main']
+helplocation = config.h['main']
+version = "0.0.1"
 
-
+subprocess.call("figlet Pygate {}".format(version),shell=True)
 ans=True
 print("PYGate Main Menu")
 while ans:
@@ -23,7 +24,7 @@ while ans:
         import serverstatus
 
     elif ans == "ping":
-        p = raw_input("\nWhat will like to ping: ")
+        p = raw_input("\nWhat will you like to ping: ")
         print("\n +------| Starting |-----+")
         subprocess.call("ping -c 5 {}".format(p),shell=True)
         print("\n +-----| Complete |-----+")

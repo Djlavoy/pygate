@@ -1,12 +1,12 @@
 import subprocess
 import shutil
 import sys
-import help
+import config
 
 
 # Path which the servers will be installed in
 path = "/root/"
-helplocation = help.h["minecraft"]
+helplocation = config.h["minecraft"]
 
 # Minecraft Manager Loop
 ans=True
