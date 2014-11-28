@@ -1,4 +1,3 @@
-__author__ = 'davidlavoy'
 import subprocess
 from termcolor import colored
 
