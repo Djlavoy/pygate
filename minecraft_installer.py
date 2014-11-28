@@ -5,79 +5,69 @@ import sys
 import config
 
 
+
 # Path which the servers will be installed in
-path = config.p['path']
 helplocation = config.h['minecraft_installer']
 installeravailable = config.h['minecraft_installer_a']
 
-# Dic, For Minecraft version
-v = {'v1.8': "Offical Minecraft1.8",
-     'tek': "Offical Tekkit"
-     }
-# Dic, For Minecraft Download
-d = {'v1.8': 'https://s3.amazonaws.com/Minecraft.Download/versions/1.8/minecraft_server.1.8.jar',
-     'tek': 'somedownloadlink'
-     }
-
-
 ans = True
-print("Minecraft Installer")
+config.output_y("Minecraft Installer")
 while ans:
     ans = raw_input("[Minecraft Installer]~> ")
     if ans == "install":
         with open("{}".format(installeravailable), "r") as help:
             shutil.copyfileobj(help, sys.stdout)
     elif ans == "install 1.8":
-        m_v = v['v1.8']
-        m_d = d['v1.8']
+        m_v = config.v['v1.8']
+        m_d = config.d['v1.8']
         break
     elif ans == "install tekkit":
-        m_d = v['tek']
-        m_d = d['tek']
+        m_d = config.v['tek']
+        m_d = config.d['tek']
         break
     elif ans == 'help':
         with open("{}".format(helplocation), "r") as help:
             shutil.copyfileobj(help, sys.stdout)
     else:
-        print("\n Not A valid Selection")
+        config.output_r("Not A valid Selection")
 
 
 # Install Script
 server = raw_input("Server Name: ")
 if os.path.exists(server):
-    print("Server {} Already Exist".format(server))
+    config.output_b("Server {} Already Exist".format(server))
     pass
 else:
     ram = raw_input("Ram: ")
     c = path+server
     os.makedirs(c)
 
-    print("\n=====Opening Minecraft Port=====")
+    config.output_b("Opening Minecraft Port")
     subprocess.call("ufw allow 25565", shell=True)
 
-    print("\n=====Creating Directory=====")
-    print("Created Directory{}".format(c))
+    config.output_b("Creating Directory")
+    config.output_b("Created Directory {}".format(c))
 
-    print("\n=====Downloading {}=====".format(m_v))
-    if os.path.exists
+    config.output_b("Downloading {}".format(m_v))
+    #if os.path.exists
     subprocess.call("wget {}".format(m_d), shell=True)
 
-    print("\n=====Creating Startup Script=====")
+    config.output_b("Creating Startup Script")
     subprocess.call("echo 'cd {}; java -Xmx{}M -Xms{}M -jar minecraft_server -nogui' > {}/start.sh".format(c, ram, ram, c), shell=True)
     subprocess.call("echo eula=true > eula.txt", shell=True)
 
-    print("\n=====Moving files to "+path+server+"=====")
+    config.output_b("Moving files to {}".format(server))
     subprocess.call("mv minecraft_server.1.8.jar {}/minecraft_server.jar".format(c), shell=True)
     subprocess.call("mv eula.txt {}".format(c), shell=True)
 
-    print("\n=====Setting Permissons for {}=====".format(c))
+    config.output_b("Setting Permissons for {}".format(c))
 
-    print("\n=====Before=====")
+    config.output_b("Before")
     subprocess.call("ls -la {}".format(c), shell=True)
     subprocess.call("chmod 755 {}/start.sh".format(c), shell=True)
 
-    print("\n=====After=====")
+    config.output_b("After")
     subprocess.call("ls -la {}".format(c), shell=True)
 
-    print("\n=====Complete=====")
-    print("The server is now installed in {}".format(c))
+    config.output_b("Complete")
+    config.output_b("The server is now installed in {}".format(c))

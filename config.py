@@ -10,7 +10,8 @@ h = {'main' : "/root/pygate/config/help/main_menu_help.txt",
      'minecraft_installer_a' : "/root/pygate/config/help/mc_installer_available.txt"
     }
 # Install Path for  Servers
-p = {'minecraft_path': '/root/minecraft/'
+p = {'minecraft_path': '/root/minecraft/',
+     'starmade_path': '/root/starmade'
     }
 
 #   For Minecraft version
