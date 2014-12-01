@@ -3,7 +3,7 @@ import shutil
 import sys
 import config
 
-
+subprocess.call("figlet Minecraft",shell=True)
 # Path which the servers will be installed in
 path = "/root/"
 helplocation = config.h["minecraft"]

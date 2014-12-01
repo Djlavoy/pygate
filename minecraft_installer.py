@@ -4,8 +4,6 @@ import shutil
 import sys
 import config
 
-
-
 # Path which the servers will be installed in
 helplocation = config.h['minecraft_installer']
 installeravailable = config.h['minecraft_installer_a']
@@ -39,7 +37,7 @@ if os.path.exists(server):
     pass
 else:
     ram = raw_input("Ram: ")
-    c = path+server
+    c = config.p['minecraft_path']+server
     os.makedirs(c)
 
     config.output_b("Opening Minecraft Port")
@@ -49,14 +47,14 @@ else:
     config.output_b("Created Directory {}".format(c))
 
     config.output_b("Downloading {}".format(m_v))
-    #if os.path.exists
+# Need to add logic to check for pre downloaded minecraft jar
     subprocess.call("wget {}".format(m_d), shell=True)
 
     config.output_b("Creating Startup Script")
-    subprocess.call("echo 'cd {}; java -Xmx{}M -Xms{}M -jar minecraft_server -nogui' > {}/start.sh".format(c, ram, ram, c), shell=True)
+    subprocess.call("echo 'java -Xmx{}M -Xms{}M -jar minecraft_server -nogui' > {}/start.sh".format(c, ram, ram, c), shell=True)
     subprocess.call("echo eula=true > eula.txt", shell=True)
 
-    config.output_b("Moving files to {}".format(server))
+    config.output_b("Moving files to {}".format(c))
     subprocess.call("mv minecraft_server.1.8.jar {}/minecraft_server.jar".format(c), shell=True)
     subprocess.call("mv eula.txt {}".format(c), shell=True)
 

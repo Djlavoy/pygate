@@ -2,7 +2,6 @@ import subprocess
 import shutil
 import sys
 import config
-from termcolor import colored
 
 # Help location
 helplocation = config.h['main']
@@ -13,6 +12,7 @@ ans=True
 config.output_r("PYGate Main Menu")
 while ans:
     ans = raw_input("[PyGate]~> ")
+    # ----- Games Menus ------
     if ans == "minecraft":
         config.output_y ("Loading Minecraft Settings")
         import minecraft
@@ -21,6 +21,10 @@ while ans:
         config.output_y("Loading Starmade Settings")
         import starmade
 
+    elif ans == 'gmod':
+        config.output_y("Loading Gmod Settings")
+        import gmod
+    # ---- Systems Tools -----
     elif ans == "ss":
         import serverstatus
 
@@ -46,7 +50,7 @@ while ans:
         config.output_b("Complete")
     
     elif ans == "exit":
-        print("\n Goodbye")
+        config.output_b("Goodbye")
         ans = None
     
     elif ans == "help":
@@ -54,5 +58,5 @@ while ans:
             shutil.copyfileobj(help, sys.stdout)
     
     else:
-       print("\n Not Valid Choice Try again or run help")
+       config.output_b("Not Valid Choice Try again or run help")
 

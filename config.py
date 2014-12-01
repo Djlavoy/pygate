@@ -1,13 +1,15 @@
 from termcolor import colored
 
 # Version Release
-rv = {'version': '0.0.1'}
+rv = {'version': '0.0.2'}
 
 # Help menus Directorys
 h = {'main' : "/root/pygate/config/help/main_menu_help.txt",
      'minecraft' : "/root/pygate/config/help/mc_manager_help.txt",
      'minecraft_installer' : "/root/pygate/config/help/mc_installer_help.txt",
-     'minecraft_installer_a' : "/root/pygate/config/help/mc_installer_available.txt"
+     'minecraft_installer_a' : "/root/pygate/config/help/mc_installer_available.txt",
+     'gmod_installer' : "root/pygate/config/help/gmod_installer.txt",
+     'gmod' : "root/pygate/config/help/gmod.txt"
     }
 # Install Path for  Servers
 p = {'minecraft_path': '/root/minecraft/',
