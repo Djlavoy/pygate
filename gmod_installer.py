@@ -5,23 +5,20 @@ import sys
 import config
 
 # Path which the servers will be installed in
-helplocation = config.h['minecraft_installer']
-installeravailable = config.h['minecraft_installer_a']
+helplocation = config.h['gmod']
 
 ans = True
-config.output_y("Minecraft Installer")
+config.output_y("Garrysmod Installer")
 while ans:
-    ans = raw_input("[Minecraft Installer]~> ")
+    ans = raw_input("[Gmod Installer]~> ")
     if ans == "install":
-        with open("{}".format(installeravailable), "r") as help:
+        with open("{}".format(helplocation), "r") as help:
             shutil.copyfileobj(help, sys.stdout)
-    elif ans == "install 1.8":
-        m_v = config.v['v1.8']
-        m_d = config.d['v1.8']
-        break
-    elif ans == "install tekkit":
-        m_d = config.v['tek']
-        m_d = config.d['tek']
+    elif ans == "install dep":
+        config.output_b("Installing dep for gmod server ")
+    elif ans == "install latest":
+        gmod_version = config.v['gmod']
+        gmod_download = config.d['gmod']
         break
     elif ans == 'help':
         with open("{}".format(helplocation), "r") as help:
@@ -36,36 +33,24 @@ if os.path.exists(server):
     config.output_b("Server {} Already Exist".format(server))
     pass
 else:
-    ram = raw_input("Ram: ")
-    c = config.p['minecraft_path']+server
+    c = config.p['gmod_path']+server
     os.makedirs(c)
 
-    config.output_b("Opening Minecraft Port")
-    subprocess.call("ufw allow 25565", shell=True)
+    config.output_b("Opening Gmod Ports")
+    subprocess.call("ufw allow 27015", shell=True)
 
     config.output_b("Creating Directory")
     config.output_b("Created Directory {}".format(c))
 
-    config.output_b("Downloading {}".format(m_v))
-# Need to add logic to check for pre downloaded minecraft jar
-    subprocess.call("wget {}".format(m_d), shell=True)
+    config.output_b("Downloading {}".format(gmod_version))
+    subprocess.call("wget {}".format(gmod_download), shell=True)
 
-    config.output_b("Creating Startup Script")
-    subprocess.call("echo 'java -Xmx{}M -Xms{}M -jar minecraft_server -nogui' > {}/start.sh".format(c, ram, ram, c), shell=True)
-    subprocess.call("echo eula=true > eula.txt", shell=True)
+    config.output_b("Checking Gmod Dep.")
 
-    config.output_b("Moving files to {}".format(c))
-    subprocess.call("mv minecraft_server.1.8.jar {}/minecraft_server.jar".format(c), shell=True)
-    subprocess.call("mv eula.txt {}".format(c), shell=True)
+    subprocess.call("dpk --add-architecture 1386", shell=True)
+    subprocess.call("apt-get update", shell=True)
+    subprocess.call("apt-get install ia32-libs", shell=True)
 
-    config.output_b("Setting Permissons for {}".format(c))
-
-    config.output_b("Before")
-    subprocess.call("ls -la {}".format(c), shell=True)
-    subprocess.call("chmod 755 {}/start.sh".format(c), shell=True)
-
-    config.output_b("After")
-    subprocess.call("ls -la {}".format(c), shell=True)
-
-    config.output_b("Complete")
-    config.output_b("The server is now installed in {}".format(c))
+    subprocess.call('mv steamcmd_linux.tar.gz {}'.format(c), shell=True)
+    subprocess.call('tar -xvzf {}/steamcmd_linux.tar.gz -C {}'.format(c, c), shell=True)
+    subprocess.call('sh {}/steamcmd.sh +login anonymous +quit'.format(c), shell=True)

@@ -25,6 +25,8 @@ while ans:
         config.output_y("Loading Gmod Settings")
         import gmod
     # ---- Systems Tools -----
+    elif ans == "openstack":
+        import openstack
     elif ans == "ss":
         import serverstatus
 

@@ -2,7 +2,8 @@
 | help : Shows Help Menu          |
 +---------------------------------+
 | minecraft : Runs Minecraft Menu |
-| starmade : Runs Starmad Menu    |
+| starmade : Runs Starmade Menu   |
+| gmod : Runs Garrys Mod Menu     | 
 | ss : show server status         |
 | ping : Runs Ping                |
 +---------------------------------+ 
