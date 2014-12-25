@@ -59,22 +59,22 @@ def mysql_installer():
 
 
 def install_nova():
-   con = db.connect()
-   cur = con.cursor()
+    con = db.connect()
+    cur = con.cursor()
+    #Creating Database Nova
+    try:
+        cur.execute('CREATE DATABASE nova;')
+        lob.output_r("Database Nova Created")
+    except db.Error, e:
+        print "Error %d: %s" % (e.args[0], e.args[1])
+#Creating User Nova
 
-   #Creating Database Nova
-   try:
-       cur.execute('CREATE DATABASE nova;')
-       lob.output_r("Database Nova Created")
-   except db.Error, e:
-       print "Error %d: %s" % (e.args[0], e.arg[1])
-   #Creating User Nova
-   try:
-       cur.execute("GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' IDENTIFIED BY '';")
-       cur.execute("GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY '';")
-       lob.output_r("User Nova Created")
-   except db.Error, e:
-       print "Error %d: %s" % (e.args[0], e.args[1])
+    try:
+        cur.execute("GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' IDENTIFIED BY '';")
+        cur.execute("GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY '';")
+        lob.output_r("User Nova Created")
+    except db.Error, e:
+        print "Error %d: %s" % (e.args[0], e.args[1])
 
 
 def install_keystone():
@@ -91,19 +91,88 @@ def install_keystone():
     try:
         cur.execute("GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY '';")
         cur.execute("GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' IDENTIFIED BY '';")
+        lob.output_r("User Keystone Created")
     except db.Error, e:
         print "Errot %d: %s" % (e.args[0], e.args[1])
 
 
 def install_glance():
+    con = db.connect()
+    cur = con.cursor()
+
+    #Creating Database GLANCE
+    try:
+        cur.execute('CREATE DATABASE glance;')
+        lob.output_r("Database Glance Created")
+    except db.Error, e:
+        print "Error %d: %s" % (e.args[0], e.args[1])
+
+    try:
+        cur.execute("GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' IDENTIFIED BY '';")
+        cur.execute("GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' IDENTIFIED BY '';")
+        lob.output_r("User Glance Created")
+    except db.Error, e:
+        print "Errot %d: %s" % (e.args[0], e.args[1])
+
 
 
 def install_neutron():
+    con = db.connect()
+    cur = con.cursor()
+
+    #Creating Database neutron
+    try:
+        cur.execute('CREATE DATABASE neutron;')
+        lob.output_r("Database neutron Created")
+    except db.Error, e:
+        print "Error %d: %s" % (e.args[0], e.args[1])
+
+    try:
+        cur.execute("GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY '';")
+        cur.execute("GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' IDENTIFIED BY '';")
+        lob.output_r("User neutron Created")
+    except db.Error, e:
+        print "Error %d: %s" % (e.args[0], e.args[1])
+
 
 
 def install_cinder():
+    con = db.connect()
+    cur = con.cursor()
+
+    #Creating Database cinder
+    try:
+        cur.execute('CREATE DATABASE cinder;')
+        lob.output_r("Database cinder Created")
+    except db.Error, e:
+        print "Error %d: %s" % (e.args[0], e.args[1])
+
+    try:
+        cur.execute("GRANT ALL PRIVILEGES ON cinder.* TO 'neutron'@'localhost' IDENTIFIED BY '';")
+        cur.execute("GRANT ALL PRIVILEGES ON cinder.* TO 'neutron'@'%' IDENTIFIED BY '';")
+        lob.output_r("User Cinder Created")
+    except db.Error, e:
+        print "Error %d: %s" % (e.args[0], e.args[1])
+
 
 
 def install_heat():
+    con = db.connect()
+    cur = con.cursor()
+
+    #Creating Database heat
+    try:
+        cur.execute('CREATE DATABASE heat;')
+        lob.output_r("Database heat Created")
+    except db.Error, e:
+        print "Error %d: %s" % (e.args[0], e.args[1])
+
+    try:
+        cur.execute("GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'localhost' IDENTIFIED BY '';")
+        cur.execute("GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'%' IDENTIFIED BY '';")
+        lob.output_r("User Heat Created")
+    except db.Error, e:
+        print "Error %d: %s" % (e.args[0], e.args[1])
+
 
 

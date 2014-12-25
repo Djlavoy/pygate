@@ -10,7 +10,7 @@ while ans:
         lob.output_y("mysql : Loads Mysql Manager")
     elif ans == "mysql":
         lob.output_y("Loading Mysql Manager")
-        openstack_mysql.mysqlmanager
+        openstack_mysql.mysqlmanager()
     elif ans == "exit":
         break
     elif ans == "..":
