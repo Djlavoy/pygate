@@ -1,6 +1,0 @@
-+----------| Help Menu |----------+
-| help : Shows Help Menu          |
-+---------------------------------+
-| install 1.8 : Installs 1.8      |
-| install tekkit : Installs Tekkit|
-+---------------------------------+ 

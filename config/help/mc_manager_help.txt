@@ -1,7 +1,0 @@
-+----------| Help Menu |----------+
-| help : Shows Help Menu          |
-+---------------------------------+
-| installer : Runs Installer      |
-| start Server : Start Server     |
-| stop Server : Stop Server       |
-+---------------------------------+ 
