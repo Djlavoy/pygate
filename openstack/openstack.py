@@ -1,7 +1,6 @@
 import subprocess
 from core import lob
-import os_function
-
+import openstack_mysql
 subprocess.call("figlet Openstack Manager", shell=True)
 
 ans = True
@@ -11,7 +10,7 @@ while ans:
         lob.output_y("mysql : Loads Mysql Manager")
     elif ans == "mysql":
         lob.output_y("Loading Mysql Manager")
-        os_function.mysql
+        openstack_mysql.mysqlmanager
     elif ans == "exit":
         break
     elif ans == "..":

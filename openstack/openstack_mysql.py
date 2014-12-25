@@ -1,6 +1,8 @@
 import subprocess
 import apt
+import MySQLdb as db
 from core import lob
+
 
 def mysqlmanager():
     ans = True
@@ -29,7 +31,7 @@ def mysqlmanager():
             install_heat()
         elif ans == "install nova":
             install_nova()
-        elif ans == "install keystone:"
+        elif ans == "install keystone":
             install_keystone()
         elif ans == "install glance":
             install_glance()
@@ -42,6 +44,7 @@ def mysqlmanager():
         else:
             lob.output_r("Not A Valid Selection")
 
+
 def mysql_installer():
     lob.output_r("Attempting to install Mysql Server")
     cache = apt.Cache()
@@ -53,5 +56,23 @@ def mysql_installer():
         lob.output_r("Installing Mysql Server")
         subprocess.call("apt-get insatll mysql-server -y", shell=True)
         lob.output_b("Mysql Server Install Complete")
+
+
+def install_nova():
+
+
+def install_keystone():
+
+
+def install_glance():
+
+
+def install_neutron():
+
+
+def install_cinder():
+
+
+def install_heat():
 
 

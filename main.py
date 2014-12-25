@@ -22,11 +22,14 @@ while ans:
     # ------ Systems Tools -----
     elif ans == "openstack":
         lob.output_y("Loading Openstack Manager")
+        from openstack import openstack
     elif ans == "clear":
         subprocess.call("clear")
     elif ans == "git":
         function.git()
     elif ans == "exit":
+        break
+    elif ans == "..":
         break
     else:
         lob.output_r("Not Valid Choice Try again or run help")

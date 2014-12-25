@@ -1,0 +1,6 @@
+sudo apt-get install vim exuberant-ctags git
+sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
+sudo apt-get install figlet
+pip install imp
+pip install MySQL-python
+sudo apt-get install libmysqlclient-dev
