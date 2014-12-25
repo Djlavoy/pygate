@@ -59,9 +59,40 @@ def mysql_installer():
 
 
 def install_nova():
+   con = db.connect()
+   cur = con.cursor()
+
+   #Creating Database Nova
+   try:
+       cur.execute('CREATE DATABASE nova;')
+       lob.output_r("Database Nova Created")
+   except db.Error, e:
+       print "Error %d: %s" % (e.args[0], e.arg[1])
+   #Creating User Nova
+   try:
+       cur.execute("GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' IDENTIFIED BY '';")
+       cur.execute("GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY '';")
+       lob.output_r("User Nova Created")
+   except db.Error, e:
+       print "Error %d: %s" % (e.args[0], e.args[1])
 
 
 def install_keystone():
+    con = db.connect()
+    cur = con.cursor()
+
+    #Creating Database Keystone
+    try:
+        cur.execute('CREATE DATABASE keystone;')
+        lob.output_r("Database Keystone Created")
+    except db.Error, e:
+        print "Error %d: %s" % (e.args[0], e.args[1])
+
+    try:
+        cur.execute("GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY '';")
+        cur.execute("GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' IDENTIFIED BY '';")
+    except db.Error, e:
+        print "Errot %d: %s" % (e.args[0], e.args[1])
 
 
 def install_glance():
