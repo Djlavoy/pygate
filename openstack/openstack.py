@@ -1,14 +1,14 @@
 import subprocess
-import lob
+from core import lob
 import os_function
 
-subprocess.call("figlet Openstack Manager",shell=True)
+subprocess.call("figlet Openstack Manager", shell=True)
 
 ans = True
 while ans:
     ans = raw_input("[Openstack]~> ")
-    if ans == "help"
-        lob.output_y("mysql : Loads Mysql Manager"
+    if ans == "help":
+        lob.output_y("mysql : Loads Mysql Manager")
     elif ans == "mysql":
         lob.output_y("Loading Mysql Manager")
         os_function.mysql
