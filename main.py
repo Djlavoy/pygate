@@ -1,6 +1,7 @@
 import subprocess
-import lob
-import function
+from core import lob
+from core import function
+
 
 subprocess.call("figlet PyGate",shell=True)
 
@@ -13,7 +14,7 @@ while ans:
     # ----- Game Menus ------
     if ans == "minecraft":
         lob.output_y("Loading Minecraft Manager")
-        import minecraft
+        from minecraft import minecraft
     elif ans == "starmade":
         lob.output_y("Loading Starmade Manager")
     elif ans == "gmod":
