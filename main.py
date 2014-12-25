@@ -13,6 +13,7 @@ while ans:
     # ----- Game Menus ------
     if ans == "minecraft":
         lob.output_y("Loading Minecraft Manager")
+        import minecraft
     elif ans == "starmade":
         lob.output_y("Loading Starmade Manager")
     elif ans == "gmod":
