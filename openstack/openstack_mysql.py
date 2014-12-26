@@ -2,6 +2,7 @@ import subprocess
 import apt
 import MySQLdb as db
 from core import lob
+import openstack_config
 
 
 def mysqlmanager():
@@ -20,6 +21,9 @@ def mysqlmanager():
             lob.output_y("install neutron : Install Neutron user and Database")
             lob.output_y("install cinder : Install Cinder user and Database")
             lob.output_y("install heat : Install Heat user and Database")
+            lob.output_y("show passwords : will show current mysql passwords")
+        elif ans == "show passwords":
+            mysql_show_passwords()
         elif ans == "install mysql":
             mysql_installer()
         elif ans == "install full":
@@ -41,9 +45,32 @@ def mysqlmanager():
             install_cinder()
         elif ans == "install heat":
             install_heat()
+        elif ans == "exit":
+            break
+        elif ans == "..":
+            break
         else:
             lob.output_r("Not A Valid Selection")
 
+def mysql_show_passwords():
+
+    lob.output_r("Keystone Password")
+    print(openstack_config.keystone_password)
+
+    lob.output_r("Nova Password")
+    print(openstack_config.nova_password)
+
+    lob.output_r("Glance Password")
+    print(openstack_config.glance_password)
+
+    lob.output_r("Neutron Password")
+    print(openstack_config.neutron_password)
+
+    lob.output_r("Cinder Password")
+    print(openstack_config.cinder_password)
+
+    lob.output_r("Heat Password")
+    print(openstack_config.heat_password)
 
 def mysql_installer():
     lob.output_r("Attempting to install Mysql Server")
@@ -70,8 +97,8 @@ def install_nova():
 #Creating User Nova
 
     try:
-        cur.execute("GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' IDENTIFIED BY '';")
-        cur.execute("GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY '';")
+        cur.execute("GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' IDENTIFIED BY '" + openstack_config.nova_password + "';")
+        cur.execute("GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY '" + openstack_config.nova_password + "';")
         lob.output_r("User Nova Created")
     except db.Error, e:
         print "Error %d: %s" % (e.args[0], e.args[1])
@@ -89,8 +116,8 @@ def install_keystone():
         print "Error %d: %s" % (e.args[0], e.args[1])
 
     try:
-        cur.execute("GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY '';")
-        cur.execute("GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' IDENTIFIED BY '';")
+        cur.execute("GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY '"+openstack_config.keystone_password+"';")
+        cur.execute("GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' IDENTIFIED BY 'i"+openstack_config.keystone_password+"';")
         lob.output_r("User Keystone Created")
     except db.Error, e:
         print "Errot %d: %s" % (e.args[0], e.args[1])
@@ -108,8 +135,8 @@ def install_glance():
         print "Error %d: %s" % (e.args[0], e.args[1])
 
     try:
-        cur.execute("GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' IDENTIFIED BY '';")
-        cur.execute("GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' IDENTIFIED BY '';")
+        cur.execute("GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' IDENTIFIED BY '"+openstack_config.glance_password+"';")
+        cur.execute("GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' IDENTIFIED BY '"+openstack_config.glance_password+"';")
         lob.output_r("User Glance Created")
     except db.Error, e:
         print "Errot %d: %s" % (e.args[0], e.args[1])
@@ -128,8 +155,8 @@ def install_neutron():
         print "Error %d: %s" % (e.args[0], e.args[1])
 
     try:
-        cur.execute("GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY '';")
-        cur.execute("GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' IDENTIFIED BY '';")
+        cur.execute("GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY '"+openstack_config.neutron_password+"';")
+        cur.execute("GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' IDENTIFIED BY '"+openstack_config.neutron_password+"';")
         lob.output_r("User neutron Created")
     except db.Error, e:
         print "Error %d: %s" % (e.args[0], e.args[1])
@@ -148,8 +175,8 @@ def install_cinder():
         print "Error %d: %s" % (e.args[0], e.args[1])
 
     try:
-        cur.execute("GRANT ALL PRIVILEGES ON cinder.* TO 'neutron'@'localhost' IDENTIFIED BY '';")
-        cur.execute("GRANT ALL PRIVILEGES ON cinder.* TO 'neutron'@'%' IDENTIFIED BY '';")
+        cur.execute("GRANT ALL PRIVILEGES ON cinder.* TO 'neutron'@'localhost' IDENTIFIED BY '"+openstack_config.cinder_password+"';")
+        cur.execute("GRANT ALL PRIVILEGES ON cinder.* TO 'neutron'@'%' IDENTIFIED BY '"+openstack_config.cinder_password+"';")
         lob.output_r("User Cinder Created")
     except db.Error, e:
         print "Error %d: %s" % (e.args[0], e.args[1])
@@ -168,8 +195,8 @@ def install_heat():
         print "Error %d: %s" % (e.args[0], e.args[1])
 
     try:
-        cur.execute("GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'localhost' IDENTIFIED BY '';")
-        cur.execute("GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'%' IDENTIFIED BY '';")
+        cur.execute("GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'localhost' IDENTIFIED BY '"+openstack_config.cinder_password+"';")
+        cur.execute("GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'%' IDENTIFIED BY '"+openstack_config.cinder_password+"';")
         lob.output_r("User Heat Created")
     except db.Error, e:
         print "Error %d: %s" % (e.args[0], e.args[1])
