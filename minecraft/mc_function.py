@@ -5,6 +5,23 @@ from core import lob
 path = {'minecraft_path': '/root/Minecraft/'}
 
 
+def main_menu():
+    # Minecraft Main Menu
+
+    subprocess.call("figlet Minecraft Manager",shell=True)
+    ans = True
+    while ans:
+        ans = raw_input("[Minecraft]~> ")
+        if ans == "installer":
+            installer()
+        elif ans == "exit":
+            break
+        elif ans == "..":
+            break
+        else:
+            lob.output_r("Invalid Command!")
+
+
 def installer():
 
     # Install Script

@@ -2,7 +2,6 @@ import subprocess
 from core import lob
 from core import function
 
-
 subprocess.call("figlet PyGate",shell=True)
 
 ans = True

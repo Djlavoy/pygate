@@ -54,7 +54,7 @@ def mysql_installer():
     else:
         lob.output_r("Mysql Server is not installed")
         lob.output_r("Installing Mysql Server")
-        subprocess.call("apt-get insatll mysql-server -y", shell=True)
+        subprocess.call("apt-get install mysql-server -y", shell=True)
         lob.output_b("Mysql Server Install Complete")
 
 
