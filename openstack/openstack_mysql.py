@@ -52,6 +52,7 @@ def mysqlmanager():
         else:
             lob.output_r("Not A Valid Selection")
 
+
 def mysql_show_passwords():
 
     lob.output_r("Keystone Password")
@@ -71,6 +72,7 @@ def mysql_show_passwords():
 
     lob.output_r("Heat Password")
     print(openstack_config.heat_password)
+
 
 def mysql_installer():
     lob.output_r("Attempting to install Mysql Server")
@@ -94,8 +96,7 @@ def install_nova():
         lob.output_r("Database Nova Created")
     except db.Error, e:
         print "Error %d: %s" % (e.args[0], e.args[1])
-#Creating User Nova
-
+    #Creating User Nova
     try:
         cur.execute("GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' IDENTIFIED BY '" + openstack_config.nova_password + "';")
         cur.execute("GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY '" + openstack_config.nova_password + "';")
@@ -142,7 +143,6 @@ def install_glance():
         print "Errot %d: %s" % (e.args[0], e.args[1])
 
 
-
 def install_neutron():
     con = db.connect()
     cur = con.cursor()
@@ -162,7 +162,6 @@ def install_neutron():
         print "Error %d: %s" % (e.args[0], e.args[1])
 
 
-
 def install_cinder():
     con = db.connect()
     cur = con.cursor()
@@ -180,7 +179,6 @@ def install_cinder():
         lob.output_r("User Cinder Created")
     except db.Error, e:
         print "Error %d: %s" % (e.args[0], e.args[1])
-
 
 
 def install_heat():
