@@ -8,12 +8,12 @@ while ans:
     ans = raw_input("[Minecraft]~> ")
     if ans == "installer":
             mc_function.installer()
-    elif ans == "help"
-        lob.output_y("installer : Opens Installer Manager"
-        lob.output_y("exit : exits Minecraft Manager"
+    elif ans == "help":
+        lob.output_y("installer : Opens Installer Manager")
+        lob.output_y("exit : exits Minecraft Manager")
     elif ans == "exit":
         break
-    elif ans == "..";
+    elif ans == "..":
         break
     else:
         lob.output_r("invaild!")

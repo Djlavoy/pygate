@@ -12,7 +12,10 @@ def main_menu():
     ans = True
     while ans:
         ans = raw_input("[Minecraft]~> ")
-        if ans == "installer":
+        if ans == "help":
+            lob.output_y("installer : launch installer")
+            lob.output_y("exit : exits Minecraft Manager")
+        elif ans == "installer":
             installer()
         elif ans == "exit":
             break
@@ -21,17 +24,13 @@ def main_menu():
         else:
             lob.output_r("Invalid Command!")
 
-def installer_help():
-    lob.output_r("installer : Starts Installer Script"
-
 def installer():
-
     # Install Script
     V = True
     while V:
+        lob.output_y("1.8")
+        lob.output_y("Tekkit")
         version = raw_input("What version will you like to install? ")
-        lob.output_r("1.8")
-        lob.output_r("Tekkit")
         if version == "1.8":
             m_v = "Offical Minecraft 1.8"
             m_d = "https://s3.amazonaws.com/Minecraft.Download/versions/1.8/minecraft_server.1.8.jar"
