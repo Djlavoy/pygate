@@ -9,9 +9,16 @@ lob.output_r("PyGate Main Menu")
 
 while ans:
     ans = raw_input("[PyGate]~> ")
+    if ans == "help":
+        lob.output_r("minecraft : Loads Minecraft Manager")
+        lob.output_r("staremade : Loads Starmade Manager")
+        lob.output_r("openstack : Loads Openstack Manager")
+        lob.output_r("gmod : Loads Garrysmod Manager")
+        lob.output_r("git : runs git push ")
+        lob.output_r("exit : exits pygate")
 
     # ----- Game Menus ------
-    if ans == "minecraft":
+    elif  ans == "minecraft":
         lob.output_y("Loading Minecraft Manager")
         from minecraft import minecraft
     elif ans == "starmade":

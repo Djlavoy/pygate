@@ -21,6 +21,8 @@ def main_menu():
         else:
             lob.output_r("Invalid Command!")
 
+def installer_help():
+    lob.output_r("installer : Starts Installer Script"
 
 def installer():
 
@@ -28,6 +30,8 @@ def installer():
     V = True
     while V:
         version = raw_input("What version will you like to install? ")
+        lob.output_r("1.8")
+        lob.output_r("Tekkit")
         if version == "1.8":
             m_v = "Offical Minecraft 1.8"
             m_d = "https://s3.amazonaws.com/Minecraft.Download/versions/1.8/minecraft_server.1.8.jar"
@@ -43,7 +47,7 @@ def installer():
         lob.output_b("Server {} Already Exist".format(server))
         pass
     else:
-        ram = raw_input("Ram: ")
+        ram = raw_input("Ram in MB: ")
         c = path['minecraft_path']+server
         os.makedirs(c)
 
