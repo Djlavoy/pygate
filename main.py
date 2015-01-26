@@ -14,7 +14,7 @@ while ans:
         lob.output_r("staremade : Loads Starmade Manager")
         lob.output_r("openstack : Loads Openstack Manager")
         lob.output_r("gmod : Loads Garrysmod Manager")
-        lob.output_r("git : runs git push ")
+        lob.output_r("git commit : commits to github ")
         lob.output_r("exit : exits pygate")
 
     # ----- Game Menus ------
@@ -31,8 +31,8 @@ while ans:
         from openstack import openstack
     elif ans == "clear":
         subprocess.call("clear")
-    elif ans == "git":
-        function.git()
+    elif ans == "git commit":
+        function.gitcommit()
     elif ans == "exit":
         break
     elif ans == "..":

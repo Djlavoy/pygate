@@ -1,7 +1,7 @@
 import lob
 import subprocess
 
-def git():
+def gitcommit():
     lob.output_b("Checking for updates")
     subprocess.call("git pull",shell=True)
     lob.output_b("Pushing upto GitHub")
