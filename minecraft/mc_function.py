@@ -57,22 +57,26 @@ def installer():
         lob.output_b("Checking Ufw Status")
         status = subprocess.check_output(['ufw','status'])
 
-        if "active" in status:
-            lob.output_b(status)
+        if "Status: active" in status:
+            lob.output_y("Ufw is active")
+            lob.output_y("Opening Minecraft Port")
+            subprocess.call("ufw allow 25565", shell=True)
+        elif "Status: inactive" in status:
+            lob.output_y("Ufw is inactive Skipping")
         else:
-            lob.output_b("Opening Minecraft Port")
+            lob.output_y("Opening Minecraft Port")
 
             subprocess.call("ufw allow 25565", shell=True)
 
-            lob.output_b("Creating Directory")
-            lob.output_b("Created Directory {}".format(c))
+        lob.output_b("Creating Directory")
+        lob.output_b("Created Directory {}".format(c))
 
         lob.output_b("Downloading {}".format(m_v))
         # Need to add logic to check for pre downloaded minecraft jar
         subprocess.call("wget {}".format(m_d), shell=True)
 
         lob.output_b("Creating Startup Script")
-        subprocess.call("echo 'java -Xmx{}M -Xms{}M -jar minecraft_server -nogui' > {}/start.sh".format(c, ram, ram, c), shell=True)
+        subprocess.call("echo 'java -Xmx{}M -Xms{}M -jar minecraft_server.jar -nogui' > {}/start.sh".format(ram, ram, c), shell=True)
         subprocess.call("echo eula=true > eula.txt", shell=True)
 
         lob.output_b("Moving files to {}".format(c))
