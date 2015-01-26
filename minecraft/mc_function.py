@@ -24,6 +24,7 @@ def main_menu():
         else:
             lob.output_r("Invalid Command!")
 
+
 def installer():
     # Install Script
     V = True
@@ -41,21 +42,30 @@ def installer():
             break
         else:
             lob.output_r("Invalid Version")
+
     server = raw_input("Server Name: ")
     if os.path.exists(server):
         lob.output_b("Server {} Already Exist".format(server))
         pass
+
     else:
         ram = raw_input("Ram in MB: ")
         c = path['minecraft_path']+server
         os.makedirs(c)
 
-        lob.output_b("Opening Minecraft Port")
+        #check if ufw is enabled
+        lob.output_b("Checking Ufw Status")
+        status = subprocess.check_output(['ufw','status'])
 
-        subprocess.call("ufw allow 25565", shell=True)
+        if "active" in status:
+            lob.output_b(status)
+        else:
+            lob.output_b("Opening Minecraft Port")
 
-        lob.output_b("Creating Directory")
-        lob.output_b("Created Directory {}".format(c))
+            subprocess.call("ufw allow 25565", shell=True)
+
+            lob.output_b("Creating Directory")
+            lob.output_b("Created Directory {}".format(c))
 
         lob.output_b("Downloading {}".format(m_v))
         # Need to add logic to check for pre downloaded minecraft jar
