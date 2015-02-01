@@ -4,6 +4,7 @@ import re
 import uuid
 import redis
 import psutil
+import netifaces
 from core import lob
 
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
@@ -20,8 +21,14 @@ def main_menu():
         if ans == "help":
             lob.output_y("fetch : fetches server info")
             lob.output_y("exit : exits Gather Manager")
+            lob.output_y("list macs : Shows all mac address")
+            lob.output_y("get info : Get info of specified mac address")
         elif ans == "fetch":
             fetch()
+        elif ans == "list macs":
+            print(r.lrange("mac",0, -1))
+        elif ans == "get info":
+            get_info()
         elif ans == "exit":
             break
         elif ans == "..":
@@ -36,6 +43,7 @@ def fetch():
     fetch_ram()
     #fetch_diskspace()
     fetch_cpu()
+    fetch_nics()
 
 
 def fetch_mac():
@@ -69,5 +77,25 @@ def fetch_cpu():
     print(cpu_count)
 
     r.hset(mac, "CPU", cpu_count)
+
+
+def fetch_nics():
+    lob.output_y("Interfaces")
+    print(netifaces.interfaces())
+
+def get_info():
+    ask = raw_input("What is the mac address? ")
+    check = r.lrange("mac", 0, -1)
+    if ask in check:
+        lob.output_y("Ram")
+        print(r.hget(ask, "Ram"))
+        lob.output_y("CPUs")
+        print(r.hget(ask, "CPU"))
+        lob.output_y("Mac Address")
+        print(mac)
+    else:
+        lob.output_r("Mac address not found")
+
+
 
 
