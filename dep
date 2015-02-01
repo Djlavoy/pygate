@@ -4,3 +4,13 @@ sudo apt-get install figlet
 pip install imp
 pip install MySQL-python
 sudo apt-get install libmysqlclient-dev
+pip install termcolor
+apt-get install python-pip
+pip install redis
+pip install psutil
+apt-get install python-dev
+pip install netifaces
+
+
+http://downloads.linux.hp.com/
+http://communitylinux.org/node/812
