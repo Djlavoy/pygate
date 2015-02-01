@@ -1,6 +1,7 @@
 import subprocess
 from core import lob
 from core import function
+from gather import gather_function
 
 subprocess.call("figlet PyGate",shell=True)
 
@@ -18,7 +19,7 @@ while ans:
         lob.output_r("exit : exits pygate")
 
     # ----- Game Menus ------
-    elif  ans == "minecraft":
+    elif ans == "minecraft":
         lob.output_y("Loading Minecraft Manager")
         from minecraft import minecraft
     elif ans == "starmade":
@@ -29,6 +30,9 @@ while ans:
     elif ans == "openstack":
         lob.output_y("Loading Openstack Manager")
         from openstack import openstack
+    elif ans == "gather":
+        lob.output_y("Loading Gather Manager")
+        gather_function.main_menu()
     elif ans == "clear":
         subprocess.call("clear")
     elif ans == "git commit":

@@ -2,13 +2,13 @@ import subprocess
 import os
 from core import lob
 
-path = {'minecraft_path': '/root/Minecraft/'}
+installpath = {'minecraft_path': '/root/Minecraft/'}
 
 
 def main_menu():
     # Minecraft Main Menu
 
-    subprocess.call("figlet Minecraft Manager",shell=True)
+    subprocess.call("figlet Minecraft Manager", shell=True)
     ans = True
     while ans:
         ans = raw_input("[Minecraft]~> ")
@@ -50,7 +50,7 @@ def installer():
 
     else:
         ram = raw_input("Ram in MB: ")
-        path = path['minecraft_path']+server
+        path = installpath['minecraft_path']+server
         os.makedirs(c)
 
         #check if ufw is enabled
