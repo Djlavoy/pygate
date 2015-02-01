@@ -38,8 +38,10 @@ while ans:
     elif ans == "git commit":
         function.gitcommit()
     elif ans == "exit":
+        subprocess.call("pyclean .",shell=True)
         break
     elif ans == "..":
+        subprocess.call("pyclean .",shell=True)
         break
     else:
         lob.output_r("Not Valid Choice Try again or run help")
