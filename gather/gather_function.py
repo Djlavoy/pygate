@@ -23,12 +23,15 @@ def main_menu():
             lob.output_y("exit : exits Gather Manager")
             lob.output_y("list macs : Shows all mac address")
             lob.output_y("get info : Get info of specified mac address")
+            lob.output_y("checklist : check specifed mac address checklist ")
         elif ans == "fetch":
             fetch()
         elif ans == "list macs":
             print(r.lrange("mac", 0, -1))
         elif ans == "get info":
             get_info()
+        elif ans == "checklistt":
+            get_checklist()
         elif ans == "exit":
             break
         elif ans == "..":
@@ -119,6 +122,23 @@ def get_info():
         print(r.hget(ask, "Date"))
     else:
         lob.output_r("Mac address not found")
+
+
+def get_checklist():
+    ask = raw_input("What is the mac address")
+    check = r.lrange("mac", 0, -1)
+
+    if ask in check:
+        lob.output_y("Checking System")
+        #check_something
+        #check_something2
+        #check_something3
+    else:
+        lob.output_r("Mac Address not found")
+
+
+
+
 
 
 

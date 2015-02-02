@@ -14,6 +14,7 @@ while ans:
         lob.output_r("minecraft : Loads Minecraft Manager")
         lob.output_r("staremade : Loads Starmade Manager")
         lob.output_r("openstack : Loads Openstack Manager")
+        lob.output_r("gather : Loads Gather Manager")
         lob.output_r("gmod : Loads Garrysmod Manager")
         lob.output_r("git commit : commits to github ")
         lob.output_r("exit : exits pygate")
