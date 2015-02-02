@@ -26,7 +26,7 @@ def main_menu():
         elif ans == "fetch":
             fetch()
         elif ans == "list macs":
-            print(r.lrange("mac",0, -1))
+            print(r.lrange("mac", 0, -1))
         elif ans == "get info":
             get_info()
         elif ans == "exit":
@@ -44,7 +44,8 @@ def fetch():
     #fetch_diskspace()
     fetch_cpu()
     fetch_nics()
-
+    fetch_hwclock()
+    fetch_date()
 
 def fetch_mac():
     lob.output_y("Mac Address")
@@ -63,8 +64,8 @@ def fetch_mac():
 
 def fetch_ram():
     lob.output_y("Ram")
-    mem_bytes = os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES')  # e.g. 4015976448
-    mem_gib = mem_bytes/(1024.**3)  # e.g. 3.74
+    mem_bytes = os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES')
+    mem_gib = mem_bytes/(1024.**3)
 
     print("{} G".format(mem_gib))
 
@@ -81,7 +82,24 @@ def fetch_cpu():
 
 def fetch_nics():
     lob.output_y("Interfaces")
-    print(netifaces.interfaces())
+    interfaces = netifaces.interfaces()
+    print(interfaces)
+    r.hset(mac, "interfaces", interfaces)
+
+
+def fetch_hwclock():
+    lob.output_y("Hwclock")
+    hwclock = subprocess.call("hwclock", shell=True)
+    print(hwclock)
+    r.hset(mac, "Hwclock", hwclock)
+
+
+def fetch_date():
+    lob.output_y("Date")
+    date = subprocess.call("date", shell=True)
+    print(date)
+    r.hset(mac, "Date", date)
+
 
 def get_info():
     ask = raw_input("What is the mac address? ")
@@ -93,6 +111,12 @@ def get_info():
         print(r.hget(ask, "CPU"))
         lob.output_y("Mac Address")
         print(mac)
+        lob.output_y("Interfaces")
+        print(r.hget(ask, "interfaces"))
+        lob.output_y("Hwclock")
+        print(r.hget(ask, "Hwclock"))
+        lob.output_y("Date")
+        print(r.hget(ask, "Date"))
     else:
         lob.output_r("Mac address not found")
 
