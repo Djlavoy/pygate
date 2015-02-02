@@ -30,7 +30,7 @@ def main_menu():
             print(r.lrange("mac", 0, -1))
         elif ans == "get info":
             get_info()
-        elif ans == "checklistt":
+        elif ans == "checklist":
             get_checklist()
         elif ans == "exit":
             break
@@ -49,6 +49,7 @@ def fetch():
     fetch_nics()
     fetch_hwclock()
     fetch_date()
+
 
 def fetch_mac():
     lob.output_y("Mac Address")
