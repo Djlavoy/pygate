@@ -33,6 +33,9 @@ def main_menu():
             lob.output_y("list macs : Shows all mac address")
             lob.output_y("get info : Get info of specified mac address")
             lob.output_y("checklist : check specifed mac address checklist ")
+            lob.output_y("create baremetal : create baremetal.csv")
+#        elif ans == "create baremetal":
+#            create_baremetal()
         elif ans == "fetch":
             fetch()
         elif ans == "list macs":
@@ -56,13 +59,14 @@ def main_menu():
 # fetch system
 def fetch():
     fetch_mac()
-    #fetch_ilo()
+    fetch_ilo()
     fetch_ram()
     #fetch_diskspace()
     fetch_cpu()
     fetch_nics()
     fetch_hwclock()
     fetch_date()
+
 
 # Get mac address, Then store it in redis
 def fetch_mac():
@@ -79,6 +83,16 @@ def fetch_mac():
     r.lrange("mac", 0, -1)
     r.hset(mac, "Mac Address", mac)
 
+
+# Get Ilo IP, Then store it in redis
+def fetch_ilo():
+    lob.output_y("iLO IP Address")
+    getio = subprocess.call("ipmitool lan print 2 | grep -v 'IP Address Source' | grep 'IP Address' | cut -d : -f 2",shell=True)
+    print(ilo)
+
+    r.hset(mac, "ilo", getio)
+
+
 # Get Ram ammount, Then store it in redis
 def fetch_ram():
     lob.output_y("Ram")
@@ -89,6 +103,7 @@ def fetch_ram():
 
     r.hset(mac, "Ram", mem_gib)
 
+
 # Get cpu count, Then store it in redis
 def fetch_cpu():
     lob.output_y("CPU count")
@@ -97,12 +112,14 @@ def fetch_cpu():
 
     r.hset(mac, "CPU", cpu_count)
 
+
 # Get interface count, Then store it in redis
 def fetch_nics():
     lob.output_y("Interfaces")
     interfaces = netifaces.interfaces()
     print(interfaces)
     r.hset(mac, "interfaces", interfaces)
+
 
 # Get Hwclock, Then store it in redis
 def fetch_hwclock():
@@ -111,12 +128,14 @@ def fetch_hwclock():
     print(hwclock)
     r.hset(mac, "Hwclock", hwclock)
 
+
 # Get Date, Then store it in redis
 def fetch_date():
     lob.output_y("Date")
     date = subprocess.call("date", shell=True)
     print(date)
     r.hset(mac, "Date", date)
+
 
 # Get system info of a given Mac address
 def get_info():
@@ -135,12 +154,15 @@ def get_info():
         print(r.hget(ask, "Hwclock"))
         lob.output_y("Date")
         print(r.hget(ask, "Date"))
+        lob.output_y("iLO IP Address")
+        print(r.hget(ask, "ilo"))
     else:
         lob.output_r("Mac address not found")
 
 #####################
 # Check list system #
 #####################
+
 
 # Runs thru a checklist to verify setup is complete.
 def get_checklist():
@@ -156,9 +178,8 @@ def get_checklist():
         lob.output_r("Mac Address {} not found!".format(ask))
 
 
+########################
+# Create Baremetal.csv #
+########################
 
-
-
-
-
-
+#def create_baremetal():
