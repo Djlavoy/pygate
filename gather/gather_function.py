@@ -87,10 +87,10 @@ def fetch_mac():
 # Get Ilo IP, Then store it in redis
 def fetch_ilo():
     lob.output_y("iLO IP Address")
-    getio = subprocess.call("ipmitool lan print 2 | grep -v 'IP Address Source' | grep 'IP Address' | cut -d : -f 2",shell=True)
-    print(ilo)
+    getilo = subprocess.call("ipmitool lan print 2 | grep -v 'IP Address Source' | grep 'IP Address' | cut -d : -f 2", shell=True)
+    print(getilo)
 
-    r.hset(mac, "ilo", getio)
+    r.hset(mac, "ilo", getilo)
 
 
 # Get Ram ammount, Then store it in redis
