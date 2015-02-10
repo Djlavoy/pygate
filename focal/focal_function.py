@@ -1,6 +1,8 @@
+import time
 import subprocess
 import redis
-from core import lob
+from netaddr import *
+from core import output
 
 ###############
 # Global Vars #
@@ -21,14 +23,14 @@ def main_menu():
     while ans:
         ans = raw_input("[Focal]~> ")
         if ans == "help":
-            lob.output_y("set pxe : set pxe network ")
-            lob.output_y("set ip start : set pxe ip start range")
-            lob.output_y("set ip end : set pxe ip end range")
-            lob.output_y("set netmask : set pxe netmask")
-            lob.output_y("set gateway : set pxe gateway")
-            lob.output_y("set ntp : set ntp ip address")
-            lob.output_y("show config : show network")
-            lob.output_y("exit : exits focal manager")
+            output.y("set pxe : set pxe network ")
+            output.y("set ip start : set pxe ip start range")
+            output.y("set ip end : set pxe ip end range")
+            output.y("set netmask : set pxe netmask")
+            output.y("set gateway : set pxe gateway")
+            output.y("set ntp : set ntp ip address")
+            output.y("show config : show network")
+            output.y("exit : exits focal manager")
         elif ans == "set pxe":
             set_ip_start()
             set_ip_end()
@@ -47,12 +49,14 @@ def main_menu():
             set_ntp
         elif ans == "show config":
             focal_show()
+        elif ans == "status":
+            status()
         elif ans == "exit":
             break
         elif ans == "..":
             break
         else:
-            lob.output_r("invalid!")
+            output.y("invalid!")
 
 ###################
 # Set PXE Network #
@@ -60,7 +64,7 @@ def main_menu():
 
 
 def set_ip_start():
-    ip_s = raw_input("IP Start Range: ")
+    ask_ip_s = raw_input("IP Start Range: ")
     r.set('tools_ip_s', ip_s)
 
 
@@ -78,6 +82,7 @@ def set_gw():
     gw = raw_input("Gateway: ")
     r.set('tools_gw', gw)
 
+
 def set_ntp():
     ntp = raw_input("Ntp Server: ")
     r.set('tools_ntp', ntp)
@@ -86,23 +91,44 @@ def set_ntp():
 ############################
 # Shows PXE boot prameters #
 ############################
+
+
 def focal_show():
 
-    lob.output_y("IP Start Range")
+    output.y("IP Start Range")
     print(r.get('tools_ip_s'))
 
-    lob.output_y("IP End Range")
+    output.y("IP End Range")
     print(r.get('tools_ip_e'))
 
-    lob.output_y("Netmask")
+    output.y("Netmask")
     print(r.get('tools_nm'))
 
-    lob.output_y("Gateway")
+    output.y("Gateway")
     print(r.get('tools_gw'))
 
-    lob.output_y("Ntp")
+    output.y("Ntp")
     print(r.get('tools_ntp'))
 
 
+##########
+# Status #
+##########
 
 
+def status():
+    try:
+        ask = int(raw_input("Set Interval in Seconds [Default 5]: ") or "5")
+    except ValueError:
+        print("Oops! That was no valid number. Try again ....")
+    else:
+        try:
+            while True:
+                print(focal_show())
+                if ask == "5":
+                    time.sleep(ask)
+                else:
+                    time.sleep(ask)
+                    subprocess.call("clear", shell=True)
+        except KeyboardInterrupt:
+            print("\nExiting...\n")
